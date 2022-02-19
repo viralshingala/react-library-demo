@@ -5,6 +5,7 @@ const LibraryList = () => {
 	const [libraries, setLibraries] = useState([])
 	const [currentLibrary, setCurrentLibrary] = useState(null)
 	const [currentIndex, setCurrentIndex] = useState(-1)
+	const [error, setError] = useState(undefined)
 
 	useEffect(() => {
 		retrieveLibraries()
@@ -14,9 +15,13 @@ const LibraryList = () => {
 		LibraryService.getAllLibraries()
 			.then((response) => {
 				setLibraries(response.data)
+				if (response.data?.length > 0) {
+					setActiveLibrary(response.data[0], 0)
+				}
 			})
 			.catch((e) => {
 				console.log(e)
+				setError(e?.response?.data?.message)
 			})
 	}
 
@@ -25,7 +30,9 @@ const LibraryList = () => {
 		setCurrentIndex(index)
 	}
 
-	return (
+	return !!error ? (
+		`${error}`
+	) : (
 		<div className='list row'>
 			<div className='col-md-6'>
 				<ul className='list-group'>
