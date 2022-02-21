@@ -1,25 +1,32 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css'
+import { Menu } from 'antd'
+import { Provider } from 'react-redux'
+import Libraries from './containers/Libraries'
+import store from './store/store'
 
-import LibraryList from './components/LibraryList'
+import 'antd/dist/antd.css'
+import './App.css'
 
 function App() {
 	return (
-		<div>
-			<nav className='navbar navbar-expand navbar-dark bg-dark'>
-				<a href='/libraries' className='navbar-brand'>
-					Portal
-				</a>
-			</nav>
+		<Provider store={store}>
+			<div>
+				<Menu mode='horizontal'>
+					<Menu.Item key='mail'>
+						<a href='/libraries' className='navbar-brand'>
+							Portal
+						</a>
+					</Menu.Item>
+				</Menu>
 
-			<div className='container mt-3'>
-				<Switch>
-					<Route exact path={['/', '/libraries']} component={LibraryList} />
-				</Switch>
+				<div className='container mt-3'>
+					<Switch>
+						<Route exact path={['/', '/libraries']} component={Libraries} />
+					</Switch>
+				</div>
 			</div>
-		</div>
+		</Provider>
 	)
 }
 
