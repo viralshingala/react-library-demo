@@ -6,7 +6,7 @@ import Libraries from './containers/Libraries'
 import store from './store/store'
 
 import 'antd/dist/antd.css'
-import './App.css'
+import './App.scss'
 
 function App() {
 	return (

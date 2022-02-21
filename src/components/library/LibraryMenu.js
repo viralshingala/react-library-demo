@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu } from 'antd'
-import { AppstoreOutlined } from '@ant-design/icons'
+import { BookOutlined } from '@ant-design/icons'
 const { SubMenu } = Menu
 
 const LibraryMenu = ({ libraries, handleMenuClick }) => {
@@ -8,7 +8,7 @@ const LibraryMenu = ({ libraries, handleMenuClick }) => {
 		<Menu mode='vertical'>
 			{libraries &&
 				libraries.map(({ name, books }) => (
-					<SubMenu key={name} icon={<AppstoreOutlined />} title={name}>
+					<SubMenu key={name} icon={<BookOutlined />} title={name}>
 						{books &&
 							books.map(({ id, title }) => (
 								<Menu.Item onClick={handleMenuClick} key={id}>
